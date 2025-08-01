@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audit Stratégique ReeWake - Recommandations & Plan d'Action</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .section-card {
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .card-header {
+            border-bottom: 1px solid #e5e7eb;
+            padding: 16px 20px;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .nav-tab {
+            padding: 10px 16px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        .nav-tab.active {
+            border-color: #4F46E5;
+            color: #4F46E5;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .recommendation {
+            border-left: 4px solid #4F46E5;
+            padding-left: 16px;
+            margin: 16px 0;
+        }
+        .observation {
+            border-left: 4px solid #10B981;
+            padding-left: 16px;
+            margin: 16px 0;
+        }
+        .continue-optimize {
+            border-left: 4px solid #F59E0B;
+        }
+        .continue-pursue {
+            border-left: 4px solid #10B981;
+        }
+        .chart-container {
+            height: 400px;
+            margin: 20px 0;
+        }
+        .audit-item {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background-color: #fff;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .audit-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .kpi-card {
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .kpi-card:hover {
+            transform: translateY(-5px);
+        }
+        .sticky-sidebar {
+            position: sticky;
+            top: 20px;
+        }
+        .badge {
+            display: inline-block;
+            padding: 0.25em 0.65em;
+            font-size: 0.75em;
+            font-weight: 700;
+            border-radius: 0.375rem;
+        }
+        @media print {
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-indigo-600 text-white">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <h1 class="text-3xl font-bold">Audit Stratégique ReeWake</h1>
+                </div>
+                <div class="text-right">
+                    <p class="text-white opacity-80">Préparé pour Paul Forger</p>
+                    <p class="text-white opacity-80">Celscraft Consulting</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Navigation Tabs -->
+    <nav class="bg-white shadow no-print">
+        <div class="container mx-auto px-4">
+            <div class="flex overflow-x-auto whitespace-nowrap py-2">
+                <a href="#executive-summary" class="nav-tab active">Synthèse</a>
+                <a href="#strategy" class="nav-tab">Stratégie</a>
+                <a href="#process" class="nav-tab">Processus</a>
+                <a href="#tools" class="nav-tab">Outils</a>
+                <a href="#methodology" class="nav-tab">Méthodologie</a>
+                <a href="#team" class="nav-tab">Team</a>
+                <a href="#campaigns" class="nav-tab">Campagnes</a>
+                <a href="#sequence" class="nav-tab">Séquence</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Executive Summary -->
+        <section id="executive-summary" class="mb-12">
+            <div class="section-card bg-white">
+                <div class="card-header bg-gray-50">
+                    <h2 class="text-2xl font-bold">Synthèse de l'Audit</h2>
+                </div>
+                <div class="card-body">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                        <div class="kpi-card bg-indigo-50">
+                            <div class="text-3xl font-bold text-indigo-700">4 479</div>
+                            <div class="text-gray-600">Prospects ciblés</div>
+                        </div>
+                        <div class="kpi-card bg-red-50">
+                            <div class="text-3xl font-bold text-red-700">3,6%</div>
+                            <div class="text-gray-600">Taux de réponse</div>
+                            <div class="text-xs text-red-500">(vs benchmark 8-12%)</div>
+                        </div>
+                        <div class="kpi-card bg-amber-50">
+                            <div class="text-3xl font-bold text-amber-700">0,9%</div>
+                            <div class="text-gray-600">Taux de conversion</div>
+                            <div class="text-xs text-amber-500">(en-dessous du standard)</div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-indigo-50 p-4 rounded-lg mb-6">
+                        <h3 class="text-lg font-semibold text-indigo-700 mb-2">Points forts identifiés</h3>
+                        <ul class="list-disc pl-6 space-y-2">
+                            <li>Proposition de valeur clairement définie et appréciée du marché</li>
+                            <li>Compréhension fine de la saisonnalité du secteur</li>
+                            <li>Garantie 12 mois comme argument différenciant</li>
+                            <li>Fort potentiel des startups biotech en post-incubation</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-amber-50 p-4 rounded-lg">
+                        <h3 class="text-lg font-semibold text-amber-700 mb-2">Axes d'amélioration prioritaires</h3>
+                        <ul class="list-disc pl-6 space-y-2">
+                            <li>Structuration des processus de prospection et de suivi des leads</li>
+                            <li>Diversification des canaux de communication (approche multicanal)</li>
+                            <li>Segmentation plus fine du marché avec messages adaptés</li>
+                            <li>Exploitation systématique du CRM comme outil central</li>
+                            <li>Mise en place d'un tableau de pilotage commercial</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Strategy Section -->
+        <section id="strategy" class="mb-12">
+            <div class="section-card bg-white">
+                <div class="card-header bg-indigo-50">
+                    <h2 class="text-2xl font-bold text-indigo-700"><i class="fas fa-chess mr-2"></i>Stratégie</h2>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container" style="height: 300px;">
+                        <canvas id="strategyChart"></canvas>
+                    </div>
+
+                    <!-- Strategy Items -->
+                    <div class="mt-8 space-y-8">
+                        <!-- Item 1 -->
+                        <div class="audit-item continue-pursue">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-semibold">Proposition de valeur</h3>
+                                <span class="badge bg-green-100 text-green-800">À poursuivre</span>
+                            </div>
+                            <div class="observation">
+                                <h4 class="font-medium text-green-700 mb-2">Constat</h4>
+                                <p class="text-gray-700">La proposition de valeur de Rewake est très clairement définie avec deux axes majeurs : reprise des équipements non utilisés par les laboratoires, et vente de matériel reconditionné (prix avantageux, disponibilité immédiate, qualité garantie pendant 12 mois). Ce positionnement répond précisément aux besoins économiques et opérationnels des clients.</p>
+                            </div>
+                            <div class="recommendation">
+                                <h4 class="font-medium text-indigo-700 mb-2">Recommandation</h4>
+                                <p class="text-gray-700">Continuer de valoriser ces deux piliers distincts et complémentaires dans les approches commerciales, notamment en les mettant davantage en avant sur LinkedIn et dans la prospection directe pour renforcer la perception claire et attractive de la valeur de Rewake.</p>
+                            </div>
+                        </div>
+
+                        <!-- Item 2 -->
+                        <div class="audit-item continue-optimize">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-semibold">Ciblage</h3>
+                                <span class="badge bg-amber-100 text-amber-800">À optimiser</span>
+                            </div>
+                            <div class="observation">
+                                <h4 class="font-medium text-green-700 mb-2">Constat</h4>
+                                <p class="text-gray-700">Bien que Rewake ait déjà identifié des segments prioritaires (startups biotech, recherche académique publique, grands comptes), le ciblage semble large et pourrait générer de la dispersion en prospection. Paul admet que le ciblage mériterait une réflexion plus poussée pour être davantage stratégique et clair.</p>
+                            </div>
+                            <div class="recommendation">
+                                <h4 class="font-medium text-indigo-700 mb-2">Recommandation</h4>
+                                <p class="text-gray-700">Définir un carnet de cible précis, accompagné d'un rétroplanning clair, permettant d'allouer les ressources de prospection aux segments à plus fort potentiel et cycles de vente courts (notamment startups biotech sortant d'incubation) afin d'optimiser les résultats commerciaux à court terme.</p>
+                            </div>
+                        </div>
+
+                        <!-- Item 3 -->
+                        <div class="audit-item continue-pursue">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-semibold">Startups biotech récurrence</h3>
+                                <span class="badge bg-green-100 text-green-800">À poursuivre</span>
+                            </div>
+                            <div class="observation">
+                                <h4 class="font-medium text-green-700 mb-2">Constat</h4>
+                                <p class="text-gray-700">Paul souligne la pertinence et le potentiel important du marché des startups biotech sortant d'incubation. Il précise que ces startups deviennent naturellement clients lorsque leur besoin d'équipement apparaît après avoir quitté l'incubateur. Il évoque également un potentiel très élevé de récurrence, illustré par des cas concrets de startups ayant fortement augmenté leur panier moyen en quelques mois.</p>
+                            </div>
+                            <div class="recommendation">
+                                <h4 class="font-medium text-indigo-700 mb-2">Recommandation</h4>
+                                <p class="text-gray-700">Poursuivre activement et intensifier le ciblage des startups biotech en post-incubation, en capitalisant sur les signaux faibles (bourses obtenues, départ des incubateurs) et en utilisant des campagnes de nurturing ciblées pour créer un pipeline régulier et durable de clients à fort potentiel de récurrence.</p>
+                            </div>
+                        </div>
+
+                        <!-- Item 4 -->
+                        <div class="audit-item continue-optimize">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-semibold">Cohérence double service</h3>
+                                <span class="badge bg-amber-100 text-amber-800">À optimiser</span>
+                            </div>
+                            <div class="observation">
+                                <h4 class="font-medium text-green-700 mb-2">Constat</h4>
+                                <p class="text-gray-700">Le modèle économique de Rewake repose sur un double service — la reprise de matériel inutilisé et la revente d'équipements reconditionnés — mais ces deux dimensions ne sont pas toujours articulées comme un tout cohérent dans la stratégie commerciale. Paul évoque ces deux offres séparément, et leur complémentarité n'est ni formalisée dans un discours, ni pleinement exploitée dans la logique de ciblage ou d'approche client. Ce manque de cohérence freine la capacité à positionner Rewake comme un partenaire global de gestion de parc pour les laboratoires.</p>
+                            </div>
+                            <div class="recommendation">
+                                <h4 class="font-medium text-indigo-700 mb-2">Recommandation</h4>
+                                <p class="text-gray-700">
+                                    ① Formaliser un discours unifié autour de la gestion circulaire des équipements de laboratoire, combinant à la fois la reprise et la revente comme deux volets d'une même mission (durabilité, efficacité budgétaire, fluidité d'usage).<br>
+                                    ② Intégrer cette logique dans le pitch commercial, sur LinkedIn, le site web, et les séquences de prospection, afin que la complémentarité apparaisse naturellement aux yeux du prospect (ex : "vous récupérez de la valeur en nous confiant votre matériel dormant, et réinvestissez dans du reconditionné fiable").<br>
+                                    ③ Revoir la segmentation et les ICPs à la lumière de ce modèle, en identifiant les cibles les plus sensibles à une approche globale (ex : labos à forte obsolescence d'équipement, ou confrontés à des réductions de budget).
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Item 5 -->
+                        <div class="audit-item continue-pursue">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-semibold">Saison commercial</h3>
+                                <span class="badge bg-green-100 text-green-800">À poursuivre</span>
+                            </div>
+                            <div class="observation">
+                                <h4 class="font-medium text-green-700 mb-2">Constat</h4>
+                                <p class="text-gray-700">Paul démontre une compréhension claire de la saisonnalité dans l'activité des laboratoires. Il identifie précisément les pics d'activité (rentrée de septembre, février-mars) et les creux (été), ce qui lui permet d'anticiper les périodes à fort potentiel commercial. Cette conscience des cycles facilite une planification plus stratégique des campagnes de prospection.</p>
+                            </div>
+                            <div class="recommendation">
+                                <h4 class="font-medium text-indigo-700 mb-2">Recommandation</h4>
+                                <p class="text-gray-700">
+                                    Capitaliser sur cette compréhension en structurant un calendrier commercial annuel anticipant les temps forts de prise de décision. Par exemple :<br>
+                                    • Lancer les campagnes d'acquisition mi-août pour capter les budgets de rentrée ;<br>
+                                    • Intensifier le nurturing dès janvier pour sécuriser les projets Q1 ;<br>
+                                    • Programmer les relances ou relances dormantes en mai/juin pour capter les soldes budgétaires de fin de période.<br>
+                                    Ce pilotage calendaire permettrait à Rewake d'optimiser le timing de ses efforts commerciaux et de lisser les résultats dans l'année.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Item 6 -->
+                        <div class="audit-item continue-pursue">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-semibold">Réassurance et garantie</h3>
+                                <span class="badge bg-green-100 text-green-800">À poursuivre</span>
+                            </div>
+                            <div class="observation">
+                                <h4 class="font-medium text-green-700 mb-2">Constat</h4>
+                                <p class="text-gray-700">Paul fait preuve d'une réelle sensibilité à la notion de réassurance dans la vente, en particulier sur la garantie 12 mois, qui rassure les prospects sur la qualité du reconditionné. Il comprend l'importance de ces éléments dans la décision d'achat, notamment auprès de cibles publiques ou académiques plus frileuses.</p>
+                            </div>
+                            <div class="recommendation">
+                                <h4 class="font-medium text-indigo-700 mb-2">Recommandation</h4>
+                                <p class="text-gray-700">
+                                    Consolider cet avantage perçu en en faisant un pilier du discours commercial. Par exemple :<br>
+                                    • Ajouter systématiquement une ligne "Garantie 12 mois incluse" dans toutes les séquences de prospection et devis<br>
+                                    • Créer un mini-case ou visuel illustrant un SAV réussi sur un équipement complexe<br>
+                                    • Valoriser l'engagement qualité de Rewake dès le premier contact dans les campagnes outbound<br>
+                                    Cette posture proactive renforcerait la confiance dès les premiers échanges et aiderait à lever plus vite les freins psychologiques liés au reconditionné.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Item 7 -->
+                        <div class="audit-item continue-optimize">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-semibold">Segmentation marché</h3>
+                                <span class="badge bg-amber-100 text-amber-800">À optimiser</span>
+                            </div>
+                            <div class="observation">
+                                <h4 class="font-medium text-green-700 mb-2">Constat</h4>
+                                <p class="text-gray-700">Paul identifie lui-même que la segmentation du marché adressé n'est pas assez fine. Il évoque des verticales distinctes (laboratoires privés, plateformes technologiques, biotech, etc.), mais ces cibles ne sont pas exploitées avec des messages différenciés ni priorisées dans la prospection. Cette approche générique limite la pertinence perçue par les prospects.</p>
+                            </div>
+                            <div class="recommendation">
+                                <h4 class="font-medium text-indigo-700 mb-2">Recommandation</h4>
+                                <p class="text-gray-700">
+                                    Structurer une segmentation opérationnelle du marché selon 3 à 4 verticales prioritaires, avec pour chacune :<br>
+                                    ① Une proposition de valeur adaptée (enjeux, objections, langage métier) ;<br>
+                                    ② Une séquence de prospection dédiée (copy, CTA, canal) ;<br>
+                                    ③ Un ciblage enrichi dans les bases de données (filtres dédiés dans AMList ou Sales Navigator).<br>
+                                    Ce niveau de granularité renforcerait la résonance des messages et permettrait d'augmenter les taux de réponse.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Item 8 -->
+                        <div class="audit-item continue-optimize">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-semibold">Triptyque différenciant</h3>
+                                <span class="badge bg-amber-100 text-amber-800">À optimiser</span>
+                            </div>
+                            <div class="observation">
+                                <h4 class="font-medium text-green-700 mb-2">Constat</h4>
+                                <p class="text-gray-700">Paul exprime avec clarté les trois piliers perçus comme différenciants pour Rewake : prix plus bas que le neuf, rapidité de livraison, et engagement environnemental fort. Cette combinaison constitue une base solide de proposition de valeur, notamment sur des segments sensibles au budget ou à la logistique.</p>
+                            </div>
+                            <div class="recommendation">
+                                <h4 class="font-medium text-indigo-700 mb-2">Recommandation</h4>
+                                <p class="text-gray-700">
+                                    Consolider cette triptyque dans tous les assets commerciaux :<br>
+                                    ① L'intégrer de façon explicite dans les accroches et messages de prospection ;<br>
+                                    ② Créer un template simple en PDF ou visuel réutilisable (LinkedIn, email, site) ;<br>
+                                    ③ Enrichir cette promesse avec une preuve par segment (ex : cas client pour une biotech, retour utilisateur dans une plateforme tech, score environnemental).<br>
+                                    Cette formalisation permettrait d'unifier le discours et de renforcer l'attractivité perçue dès le premier contact.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Item 9 -->
+                        <div class="audit-item continue-optimize">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-semibold">Expansion internationale</h3>
+                                <span class="badge bg-amber-100 text-amber-800">À optimiser</span>
+                            </div>
+                            <div class="observation">
+                                <h4 class="font-medium text-green-700 mb-2">Constat</h4>
+                                <p class="text-gray-700">Paul évoque des perspectives d'expansion naturelle à l'international, notamment en Belgique, Allemagne et États-Unis, là où il existe déjà une sensibilité au reconditionné et des réseaux existants. Ces zones sont perçues comme proches en termes de maturité marché.</p>
+                            </div>
+                            <div class="recommendation">
+                                <h4 class="font-medium text-indigo-700 mb-2">Recommandation</h4>
+                                <p class="text-gray-700">
+                                    Pas de suite (sur moyen terme) mais lancer une phase exploratoire structurée :<br>
+                                    ① Cartographier les signaux d'intérêt déjà observés (contacts entrants, connexions LinkedIn, leads Waalaxy déjà touchés)<br>
+                                    ② Identifier les clusters prioritaires (ex : biotechs US, plateformes académiques allemandes)<br>
+                                    ③ Traduire les séquences existantes et préparer une V1 de test à bas volume<br>
+                                    ④ Monitorer les réponses et objections spécifiques pour affiner les itérations<br>
+                                    Ce cadrage permettrait de valider ou non l'attractivité réelle de ces zones, sans effort lourd initial.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Item 10 -->
+                        <div class="audit-item continue-optimize">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-semibold">Canaux historiques (Alban Catois)</h3>
+                                <span class="badge bg-amber-100 text-amber-800">À optimiser</span>
+                            </div>
+                            <div class="observation">
+                                <h4 class="font-medium text-green-700 mb-2">Constat</h4>
+                                <p class="text-gray-700">Alban décrit une acquisition commerciale historiquement reposée sur trois canaux : Walaxy, les salons spécialisés, et le bouche-à-oreille. Cette stratégie a permis une traction initiale, mais sans structuration ni pilotage dans le temps. Aucune capitalisation n'a été réalisée sur les leads salons ou entrants passés, ni sur les bases d'anciens prospects.</p>
+                            </div>
+                            <div class="recommendation">
+                                <h4 class="font-medium text-indigo-700 mb-2">Recommandation</h4>
+                                <p class="text-gray-700">
+                                    Structurer une stratégie de réactivation commerciale autour des bases dormantes :<br>
+                                    ① Extraire toutes les bases contacts issues des salons et campagnes passées ;<br>
+                                    ② Qualifier les statuts (ouverts, perdus, silencieux, convertis) ;<br>
+                                    ③ Lancer une séquence courte de réactivation à forte valeur ajoutée (ex : nouveauté produit, insight marché) ;<br>
+                                    ④ Intégrer un tag spécifique dans le CRM pour nourrir un vivier réutilisable à long terme.<br>
+                                    Ce cadrage permettrait d'augmenter le ROI des actions passées, sans coût d'acquisition supplémentaire.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Item 11 -->
+                        <div class="audit-item continue-pursue">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-semibold">Verticales prioritaires (Alban Catois)</h3>
+                                <span class="badge bg-amber-100 text-amber-800">À optimiser</span>
+                            </div>
+                            <div class="observation">
+                                <h4 class="font-medium text-green-700 mb-2">Constat</h4>
+                                <p class="text-gray-700">Alban identifie 3 verticales jugées prioritaires : les biotech, les medtech et la foodtech. Il reconnaît que ces secteurs ont été visés historiquement, mais sans structuration précise (pas de différenciation des messages ou séquences par segment). Ce positionnement sectoriel est partagé avec Paul et constitue un socle stratégique commun.</p>
+                            </div>
+                            <div class="recommendation">
+                                <h4 class="font-medium text-indigo-700 mb-2">Recommandation</h4>
+                                <p class="text-gray-700">
+                                    Capitaliser sur cette convergence en formalisant une matrice "secteur x besoin", avec pour chaque verticale :<br>
+                                    ① Une problématique dominante (ex : budget, conformité, rapidité d'approvisionnement)<br>
+                                    ② Des arguments dédiés + un cas client associé si dispo<br>
+                                    ③ Une séquence AMList adaptée (copy, canal, CTA)<br>
+                                    ④ Un suivi de performance par vertical dans le CRM<br>
+                                    Cette structuration permettrait d'amorcer une spécialisation progressive, sans surcomplexification initiale.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section id="process" class="mb-12">
+            <div class="section-card bg-white">
+                <div class="card-header bg-blue-50">
+                    <h2 class="text-2xl font-bold text-blue-700"><i class="fas fa-cogs mr-2"></i>Processus</h2>
+                </div>
+                <div class="card-body">
+                    <div class="mt-8 space-y-8">
+                        <!-- Item 1 -->
+                        <div class="audit-item continue-optimize">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-semibold">Routine prospection</h3>
+                                <span class="badge bg-amber-100 text-amber-800">À optimiser</span>
+                            </div>
+                            <div class="observation">
+                                <h4 class="font-medium text-green-700 mb-2">Constat</h4>
+                                <p class="text-gray-700">La prospection chez Rewake manque actuellement d'une routine clairement définie. Bien qu'Alexandre (alternant) ait un objectif hebdomadaire de 30 prospects dans les campagnes Walaxy, le suivi et les points réguliers semblent insuffisants. Paul reconnaît qu'il ne suit pas étroitement les objectifs ou le progrès d'Alexandre, ce qui réduit l'efficacité et le pilotage de la prospection.</p>
+                            </div>
+                            <div class="recommendation">
+                                <h4 class="font-medium text-indigo-700 mb-2">Recommandation</h4>
+                                <p class="text-gray-700">Mettre en place une routine hebdomadaire formelle et obligatoire de suivi et de pilotage avec Alexandre (ou son remplaçant futur), incluant un tableau de suivi clair et partagé (exemple : Google Sheets ou Airtable), afin de renforcer la régularité et la rigueur dans l'atteinte des objectifs de prospection.</p>
+                            </div>
+                        </div>
+
+                        <!-- Item 2 -->
+                        <div class="audit-item continue-optimize">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-semibold">Qualification PipeDrive</h3>
+                                <span class="badge bg-amber-100 text-amber-800">À optimiser</span>
+                            </div>
+                            <div class="observation">
+                                <h4 class="font-medium text-green-700 mb-2">Constat</h4>
+                                <p class="text-gray-700">La qualification des prospects n'est pas documentée de manière systématique dans PipeDrive. Seuls les leads contactés sont ajoutés manuellement, et il n'y a pas de logique claire pour tracer les raisons d'un désintérêt ou d'un échec de conversion. Cela empêche l'apprentissage collectif, la segmentation intelligente, et l'optimisation des efforts de prospection dans le temps.</p>
+                            </div>
+                            <div class="recommendation">
+                                <h4 class="font-medium text-indigo-700 mb-2">Recommandation</h4>
+                                <p class="text-gray-700">
+                                    ① Créer une nomenclature claire de statuts et raisons de disqualification (ex : « Pas de budget », « Mauvais timing », « Équipe trop petite », « Acheté ailleurs »).<br>
+                                    ② Mettre en place un champ obligatoire dans PipeDrive pour documenter la raison de refus ou d'inactivité à chaque fois qu'un prospect est marqué comme "perdu" ou "inactif".<br>
+                                    ③ Taguer systématiquement les leads non intéressés pour pouvoir :<br>
+                                    • Identifier des segments à relancer plus tard,<br>
+                                    • Mieux adapter le copywriting ou la stratégie par cible,<br>
+                                    • Construire des audiences d'exclusion pour éviter les doublons.<br>
+                                    ④ Automatiser ce tagging via un outil comme LaGrowthMachine, qui peut envoyer les tags dans PipeDrive automatiquement en fonction des réponses (ex : "Not interested", "No budget").<br>
+                                    ⑤ Faire une revue mensuelle des raisons de refus pour en tirer des tendances, ajuster la stratégie commerciale et orienter les actions à moyen terme.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Item 3 -->
+                        <div class="audit-item continue-optimize">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-semibold">Création campagnes</h3>
+                                <span class="badge bg-amber-100 text-amber-800">À optimiser</span>
+                            </div>
+                            <div class="observation">
+                                <h4 class="font-medium text-green-700 mb-2">Constat</h4>
+                                <p class="text-gray-700">Alexandre gère en grande autonomie la création et l'envoi des campagnes Walaxy, sans processus clair de relecture, de cadrage ou de validation. Paul admet qu'il n'est que très peu impliqué dans les campagnes lancées, ce qui génère un risque de dilution du message commercial et un manque d'alignement avec la stratégie globale de Rewake.</p>
+                            </div>
+                            <div class="recommendation">
+                                <h4 class="font-medium text-indigo-700 mb-2">Recommandation</h4>
+                                <p class="text-gray-700">
+                                    Instaurer un cadre de relecture systématique des messages et séquences avant diffusion. Concrètement :<br>
+                                    ① Créer un template de campagne standardisé (copy, rythme, CTA)<br>
+                                    ② Formaliser un système de validation rapide (Slack, Notion, ou Google Doc commenté) pour que Paul ou un référent valide chaque campagne avant envoi<br>
+                                    ③ Programmer une séance mensuelle de "post-mortem" campagne pour tirer les apprentissages, améliorer les messages et ajuster les séquences<br>
+                                    Cette organisation légère mais structurée permettrait de garder la main sur le fond, tout en responsabilisant le commercial dans l'exécution.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Item 4 -->
+                        <div class="audit-item continue-optimize">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-semibold">Nurturing leads perdus</h3>
+                                <span class="badge bg-amber-100 text-amber-800">À optimiser</span>
+                            </div>
+                            <div class="observation">
+                                <h4 class="font-medium text-green-700 mb-2">Constat</h4>
+                                <p class="text-gray-700">Paul partage plusieurs cas où des leads identifiés ou engagés n'ont pas été suivis ou relancés dans la durée, faute de structuration du suivi ou de processus clair de nurturing. Certains prospects ayant montré de l'intérêt initial ne sont plus travaillés aujourd'hui, ce qui crée un manque à gagner sur le long terme.</p>
+                            </div>
+                            <div class="recommendation">
+                                <h4 class="font-medium text-indigo-700 mb-2">Recommandation</h4>
+                                <p class="text-gray-700">
+                                    Construire une stratégie de nurturing systématique autour des leads tièdes ou perdus :<br>
+                                    ① Exporter depuis PipeDrive tous les leads marqués comme "Perdu" ou inactifs depuis plus de 3 mois<br>
+                                    ② Les classer par typologie (intérêt initial, objection, timing, secteur)<br>
+                                    ③ Créer des mini-campagnes de réactivation ciblées avec un angle spécifique (nouveauté produit, retour client, baisse de prix, invitation événement)<br>
+                                    ④ Intégrer ce vivier dans une séquence récurrente dans AMList pour lisser l'effort dans le temps<br>
+                                    Cette logique de recyclage permettrait à Rewake d'augmenter mécaniquement son taux de conversion sans effort d'acquisition
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Item 5 -->
+                        <div class="audit-item continue-optimize">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-semibold">Opportunisme commercial (Alban Catois)</h3>
+                                <span class="badge bg-amber-100 text-amber-800">À optimiser</span>
+                            </div>
+                            <div class="observation">
+                                <h4 class="font-medium text-green-700 mb-2">Constat</h4>
+                                <p class="text-gray-700">Alban souligne que l'approche commerciale actuelle repose beaucoup sur l'intuition : "on y va quand on sent qu'il faut y aller". Il n'y a pas de routine, ni de cadencement, ni de logique d'itération. Cette posture d'opportunité empêche toute montée en puissance progressive ou apprentissage structuré.</p>
+                            </div>
+                            <div class="recommendation">
+                                <h4 class="font-medium text-indigo-700 mb-2">Recommandation</h4>
+                                <p class="text-gray-700">
+                                    Mettre en place un cadre commercial minimum viable, avec :<br>
+                                    ① Un volume cible de leads traités chaque semaine ;<br>
+                                    ② Une logique de test de messages par segment (avec learning partagé)<br>
+                                    ③ Un rituel hebdo d'analyse courte (ce qui a marché / pas marché)<br>
+                                    ④ Des actions relances planifiées plutôt que réactives<br>
+                                    Ce socle méthodologique apporterait de la régularité, sans brider la liberté commerciale, et permettrait de lisser la performance dans le temps.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Item 6 -->
+                        <div class="audit-item continue-optimize">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-semibold">Traitement des silences (Alexandre)</h3>
+                                <span class="badge bg-amber-100 text-amber-800">À optimiser</span>
+                            </div>
+                            <div class="observation">
+                                <h4 class="font-medium text-green-700 mb-2">Constat</h4>
+                                <p class="text-gray-700">Alexandre explique que les relances sont majoritairement faites à la main, sans plan clair ni suivi structuré. Une fois une campagne lancée sur Lemlist ou Walaxy, les non-répondants sont rarement retravaillés de manière systématique. Il n'existe pas aujourd'hui de routine pour exploiter ces silences, ni de logique de tagging pour les retrouver.</p>
+                            </div>
+                            <div class="recommendation">
+                                <h4 class="font-medium text-indigo-700 mb-2">Recommandation</h4>
+                                <p class="text-gray-700">Mettre en place un mini-process de traitement des silences post-campagne.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tools Section -->
+        <section id="tools" class="mb-12">
+            <div class="section-card bg-white">
+                <div class="card-header bg-green-50">
+                    <h2 class="text-2xl font-bold text-green-700"><i class="fas fa-tools mr-2"></i>Outils</h2>
+                </div>
+                <div class="card-body">
+                    <div class="mt-8 space-y-8">
+                        <!-- Item 1 -->
+                        <div class="audit-item continue-optimize">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-semibold">Intégration PipeDrive</h3>
+                                <span class="badge bg-amber-100 text-amber-800">À optimiser</span>
+                            </div>
+                            <div class="observation">
+                                <h4 class="font-medium text-green-700 mb-2">Constat</h4>
+                                <p class="text-gray-700">L'intégration actuelle des leads dans PipeDrive est partielle et manuelle (uniquement après prise de contact directe). Les leads générés sur LinkedIn, par mail ou via le formulaire du site web ne sont pas automatiquement intégrés au CRM. Ceci limite fortement la visibilité du pipeline global et augmente le risque de pertes d'opportunités commerciales.</p>
+                            </div>
+                            <div class="recommendation">
+                                <h4 class="font-medium text-indigo-700 mb-2">Recommandation</h4>
+                                <p class="text-gray-700">Automatiser l'intégration systématique des leads entrants dans PipeDrive, en utilisant des outils d'automatisation (exemple : Lemlist ou Surf), afin de maximiser la gestion proactive et l'exploitation optimale des opportunités commerciales.</p>
+                            </div>
+                        </div>
+
+                        <!-- Item 2 -->
+                        <div class="audit-item continue-optimize">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-semibold">E-mailing</h3>
+                                <span class="badge bg-amber-100 text-amber-800">À optimiser</span>
+                            </div>
+                            <div class="observation">
+                                <h4 class="font-medium text-green-700 mb-2">Constat</h4>
+                                <p class="text-gray-700">Paul mentionne avoir complètement arrêté l'envoi d'e-mails de prospection en masse, notamment à cause de problèmes liés au spam et aux adresses invalides. Il indique toutefois que l'e-mail avait apporté des résultats au moins équivalents à ceux de LinkedIn par le passé, ce qui suggère un potentiel inexploité actuellement.</p>
+                            </div>
+                            <div class="recommendation">
+                                <h4 class="font-medium text-indigo-700 mb-2">Recommandation</h4>
+                                <p class="text-gray-700">
+                                    ① Cadrage stratégique : Définir une cible précise et limitée en nombre (ex : startups biotech récemment sorties d'incubateur, clients dormant à réactiver, leads chauds non convertis).<br>
+                                    ② Préparation technique : Utiliser un outil type Bettercontact pour nettoyer et valider systématiquement toutes les adresses email avant intégration dans les campagnes, afin d'éviter tout rebond négatif.<br>
+                                    ③ Infrastructure d'envoi : Créer un domaine dédié ou sous-domaine spécifique aux envois de prospection (ex : mail.rewake.fr) pour éviter tout risque sur le domaine principal.<br>
+                                    ④ Warm-up email : Mettre en place une phase progressive de montée en volume sur 2 semaines avec des outils de "warm-up" (ex : Lemwarm), afin d'établir une réputation positive avant les campagnes.<br>
+                                    ⑤ Copywriting optimisé : Rédiger des séquences d'e-mails courtes, ciblées et ultra-personnalisées (ex : 3 emails maximum par séquence), avec un copywriting adapté et non-spammy, intégrant une proposition de valeur claire et un call-to-action unique.<br>
+                                    ⑥ Mesure des résultats : Établir un reporting hebdomadaire simple pour suivre les taux d'ouverture, clics et réponses, afin d'ajuster immédiatement si besoin.<br>
+                                    ⑦ Pilotage continu : Intégrer un point régulier hebdomadaire (15 min) pour valider la délivrabilité, le suivi des performances et le bon déroulement opérationnel, idéalement lors du point de pilotage commercial.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Item 3 -->
+                        <div class="audit-item continue-optimize">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-semibold">Multicanal</h3>
+                                <span class="badge bg-amber-100 text-amber-800">À optimiser</span>
+                            </div>
+                            <div class="observation">
+                                <h4 class="font-medium text-green-700 mb-2">Constat</h4>
+                                <p class="text-gray-700">La prospection repose aujourd'hui exclusivement sur le canal LinkedIn, via des campagnes Walaxy pilotées par Alexandre. Paul reconnaît qu'il n'y a pas de cadre formalisé pour tester différentes approches ni pour analyser finement les résultats. Cette dépendance à un seul canal limite la portée de la prospection, empêche une couverture plus large du marché et fragilise la capacité à identifier ce qui fonctionne réellement.</p>
+                            </div>
+                            <div class="recommendation">
+                                <h4 class="font-medium text-indigo-700 mb-2">Recommandation</h4>
+                                <p class="text-gray-700">
+                                    ① Remplacer Walaxy par Lemlist, un outil plus robuste et adapté à une approche multicanale (LinkedIn + e-mail), permettant une gestion unifiée des séquences, une meilleure délivrabilité, et un reporting centralisé.<br>
+                                    ② Structurer une séquence multicanale type :<br>
+                                    • Jour 1 : invitation LinkedIn personnalisée<br>
+                                    • Jour 3 : e-mail #1 contextualisé<br>
+                                    • Jour 7 : relance LinkedIn<br>
+                                    • Jour 10 : e-mail #2 + call-to-action clair<br>
+                                    • Etc<br>
+                                    ③ Mettre en place un tableau de bord de suivi, recensant les séquences actives, les canaux utilisés, les performances (taux de réponse, taux de RDV), et les segments ciblés.<br>
+                                    ④ Ritualiser une boucle d'apprentissage hebdomadaire ou bimensuelle, avec Paul et le commercial, pour affiner les messages, tester de nouvelles approches, et capitaliser sur les apprentissages (ce qui génère des RDV, ce qui est ignoré, etc.).
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Item 4 -->
+                        <div class="audit-item continue-optimize">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-semibold">Dashboard de pilotage</h3>
+                                <span class="badge bg-amber-100 text-amber-800">À optimiser</span>
+                            </div>
+                            <div class="observation">
+                                <h4 class="font-medium text-green-700 mb-2">Constat</h4>
+                                <p class="text-gray-700">Aucun tableau de bord commercial n'est actuellement en place pour suivre la performance de la prospection. Paul n'a pas de visibilité synthétique sur le volume de leads contactés, le taux de réponse, le nombre de rendez-vous générés ou les conversions. Ce manque d'indicateurs empêche une prise de recul efficace sur les actions menées.</p>
+                            </div>
+                            <div class="recommendation">
+                                <h4 class="font-medium text-indigo-700 mb-2">Recommandation</h4>
+                                <p class="text-gray-700">
+                                    Concevoir un tableau de pilotage hebdomadaire minimaliste, centralisé sur Notion ou Google Sheets, comprenant :<br>
+                                    • Leads ajoutés / contactés / répondus<br>
+                                    • Nombre de RDV obtenus<br>
+                                    • Canaux utilisés<br>
+                                    • Taux de transformation (RDV → opportunité)<br>
+                                    • Top 3 séquences les plus performantes<br>
+                                    Ce tableau servira de boussole hebdomadaire et permettra d'ajuster rapidement les actions sans attendre un signal faible.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Item 5 -->
+                        <div class="audit-item continue-optimize">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-semibold">CRM central (Alban Catois)</h3>
+                                <span class="badge bg-amber-100 text-amber-800">À optimiser</span>
+                            </div>
+                            <div class="observation">
+                                <h4 class="font-medium text-green-700 mb-2">Constat</h4>
+                                <p class="text-gray-700">Alban reconnaît que l'équipe ne s'est jamais vraiment appropriée l'usage du CRM. Les relances sont encore faites de manière artisanale, parfois sur la base d'exports Excel, et sans suivi rigoureux. Le CRM est vu comme un outil périphérique, et non comme une boussole opérationnelle.</p>
+                            </div>
+                            <div class="recommendation">
+                                <h4 class="font-medium text-indigo-700 mb-2">Recommandation</h4>
+                                <p class="text-gray-700">
+                                    Repositionner le CRM comme outil central de pilotage commercial, via :<br>
+                                    ① Une simplification du pipeline pour qu'il reflète les étapes réelles vécues (prise de contact, relance, RDV, propale, etc.) ;<br>
+                                    ② Un rituel hebdomadaire court (30 min) de revue de pipe, pour ancrer l'usage ;<br>
+                                    ③ Une politique claire de "ce qui n'est pas dans le CRM n'existe pas" pour aligner l'équipe ;<br>
+                                    ④ Une intégration à Walaaxy pour fluidifier l'entrée des leads et éviter les doubles saisies.<br>
+                                    Ce recentrage permettrait d'industrialiser le pilotage commercial, et d'éviter les pertes d'infos ou d'opportunités.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Item 6 -->
+                        <div class="audit-item continue-optimize">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-semibold">Usage du CRM (Alexandre)</h3>
+                                <span class="badge bg-amber-100 text-amber-800">À optimiser</span>
+                            </div>
+                            <div class="observation">
+                                <h4 class="font-medium text-green-700 mb-2">Constat</h4>
+                                <p class="text-gray-700">Le CRM est perçu comme une archive de backup, plutôt qu'un outil de pilotage. Alexandre n'y passe que rarement, ne met pas à jour les statuts des leads en continu, et ne s'en sert pas comme support à la relance ou à la qualification. Cela entraîne une perte de visibilité sur le pipe et une dépendance aux fichiers externes.</p>
+                            </div>
+                            <div class="recommendation">
+                                <h4 class="font-medium text-indigo-700 mb-2">Recommandation</h4>
+                                <p class="text-gray-700">
+                                    Repositionner l'usage du CRM comme outil quotidien à travers :<br>
+                                    ① Une interface simplifiée avec uniquement les champs utiles (statut, canal, date de dernière action)<br>
+                                    ② Une synchronisation automatique ou semi-automatique depuis AMList<br>
+                                    ③ Une routine de mise à jour 1 à 2 fois par semaine avec 15 minutes de "pipeline hygiene"<br>
+                                    ④ Un tableau de bord minimal pour visualiser l'activité en cours et les leads à relancer<br>
+                                    Cette discipline simple permettra à Rewake de sécuriser ses leads et d'éviter les pertes d'informations dans le flux d'activité.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Methodology Section -->
+        <section id="methodology" class="mb-12">
+            <div class="section-card bg-white">
+                <div class="card-header bg-purple-50">
+                    <h2 class="text-2xl font-bold text-purple-700"><i class="fas fa-clipboard-list mr-2"></i>Méthodologie</h2>
+                </div>
+                <div class="card-body">
+                    <div class="mt-8 space-y-8">
+                        <!-- Item 1 -->
+                        <div class="audit-item continue-optimize">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-semibold">Phoning</h3>
+                                <span class="badge bg-amber-100 text-amber-800">À optimiser</span>
+                            </div>
+                            <div class="observation">
+                                <h4 class="font-medium text-green-700 mb-2">Constat</h4>
+                                <p class="text-gray-700">Paul indique que Rewake n'a jamais testé sérieusement la prospection téléphonique, en raison d'une perception de difficulté, de manque de clarté sur les résultats potentiels et d'un manque de confort avec cet outil. Pourtant, il admet que cela pourrait être intéressant pour augmenter l'efficacité commerciale.</p>
+                            </div>
+                            <div class="recommendation">
+                                <h4 class="font-medium text-indigo-700 mb-2">Recommandation</h4>
+                                <p class="text-gray-700">Mettre en place une phase pilote sur le phoning, avec un script clair et un accompagnement initial (coaching, simulation, double écoute), pour évaluer objectivement la pertinence et les résultats potentiels de cette méthode dans la prospection B2B de Rewake.</p>
+                            </div>
+                        </div>
+
+                        <!-- Item 2 -->
+                        <div class="audit-item continue-pursue">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-semibold">Simplification parcours client</h3>
+                                <span class="badge bg-green-100 text-green-800">À poursuivre</span>
+                            </div>
+                            <div class="observation">
+                                <h4 class="font-medium text-green-700 mb-2">Constat</h4>
+                                <p class="text-gray-700">Rewake obtient régulièrement des ventes sans nécessairement avoir de rendez-vous formel. Paul souligne que certains deals se font simplement via des échanges par e-mail, répondant directement à des demandes spécifiques. Cela reflète une capacité à simplifier le processus commercial pour les clients qui préfèrent éviter des interactions trop commerciales.</p>
+                            </div>
+                            <div class="recommendation">
+                                <h4 class="font-medium text-indigo-700 mb-2">Recommandation</h4>
+                                <p class="text-gray-700">Maintenir cette souplesse méthodologique en laissant le choix aux prospects de suivre un parcours simplifié ou un parcours plus classique avec rendez-vous, tout en proposant proactivement le rendez-vous commercial pour créer du lien humain lorsque c'est pertinent.</p>
+                            </div>
+                        </div>
+
+                        <!-- Item 3 -->
+                        <div class="audit-item continue-optimize">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-semibold">Multicanal séquencé</h3>
+                                <span class="badge bg-amber-100 text-amber-800">À optimiser</span>
+                            </div>
+                            <div class="observation">
+                                <h4 class="font-medium text-green-700 mb-2">Constat</h4>
+                                <p class="text-gray-700">Aujourd'hui, les séquences de prospection ne sont pas pensées en logique "multi-canal" : chaque canal (email, LinkedIn, phoning) est utilisé de manière isolée, sans articulation fluide entre eux. Cette absence de scénarisation combinée limite les points de contact avec le prospect, ce qui peut nuire à l'efficacité des approches, notamment sur les cycles de vente longs ou froids.</p>
+                            </div>
+                            <div class="recommendation">
+                                <h4 class="font-medium text-indigo-700 mb-2">Recommandation</h4>
+                                <p class="text-gray-700">
+                                    Concevoir des séquences de prospection hybrides intégrant plusieurs canaux, avec une progression pensée :<br>
+                                    ① Premier point de contact par email (ex : insight sectoriel ou cas client)<br>
+                                    ② Suivi par une demande de connexion LinkedIn (en écho au mail envoyé)<br>
+                                    ③ Si pas de réponse : appel téléphonique ou message vocal court<br>
+                                    ④ Relance par un email plus direct au bout de 7-10 jours<br>
+                                    ⑤ Clôture par un message LinkedIn (soft break / permission marketing)<br>
+                                    En orchestrant ces canaux, Rewake gagnerait en visibilité, en crédibilité et en taux de réponse sur des cibles complexes.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Item 4 -->
+                        <div class="audit-item continue-optimize">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-semibold">Nurturing centralisé (Alban Catois)</h3>
+                                <span class="badge bg-amber-100 text-amber-800">À optimiser</span>
+                            </div>
+                            <div class="observation">
+                                <h4 class="font-medium text-green-700 mb-2">Constat</h4>
+                                <p class="text-gray-700">Alban admet que l'équipe ne tire pas profit des échanges passés avec des leads non convertis. Les bases ne sont ni centralisées, ni réexploitées. Une fois un échange terminé ou un salon passé, le contact n'est généralement plus travaillé. Cette absence de logique de capitalisation limite fortement la construction d'un vivier d'opportunités.</p>
+                            </div>
+                            <div class="recommendation">
+                                <h4 class="font-medium text-indigo-700 mb-2">Recommandation</h4>
+                                <p class="text-gray-700">
+                                    Mettre en place un système de nurturing long terme, basé sur :<br>
+                                    ① Un vivier centralisé dans le CRM des leads "non convertis" (perdus, dormants, indécis)<br>
+                                    ② Une campagne trimestrielle de réengagement avec un angle contenu (nouveau projet, use case client, mini événement)<br>
+                                    ③ Une automatisation des rappels internes (ex : 90 jours après dernier contact) pour les relancer<br>
+                                    ④ Des tags clairs pour savoir qui a déjà été exposé à Rewake<br>
+                                    Cette logique permettrait de faire mûrir les leads froids sans effort
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Item 5 -->
+                        <div class="audit-item continue-optimize">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-semibold">Validation campagnes (Alexandre)</h3>
+                                <span class="badge bg-amber-100 text-amber-800">À optimiser</span>
+                            </div>
+                            <div class="observation">
+                                <h4 class="font-medium text-green-700 mb-2">Constat</h4>
+                                <p class="text-gray-700">Alexandre utilise Walaaxy pour envoyer des campagnes, mais sans validation systématique des messages. Il construit ses séquences seul, sans test A/B, sans relecture, et avec une logique très intuitive. Cette méthode artisanale nuit à la qualité des messages et limite les chances de capter l'attention des cibles.</p>
+                            </div>
+                            <div class="recommendation">
+                                <h4 class="font-medium text-indigo-700 mb-2">Recommandation</h4>
+                                <p class="text-gray-700">
+                                    Mettre en place un process de validation light avant diffusion :<br>
+                                    ① Créer un template de campagne type (accroche, corps, CTA)<br>
+                                    ② Imposer une relecture rapide (par Paul ou une autre personne) avant lancement<br>
+                                    ③ Ajouter un test A/B simple sur 2 accroches<br>
+                                    ④ Utiliser un tableur de suivi pour tracker les campagnes envoyées (objectif, segment, message, résultats)<br>
+                                    Cette formalisation légère améliorerait significativement l'efficacité des messages envoyés.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Item 6 -->
+                        <div class="audit-item continue-optimize">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-semibold">Traitement objections (Alexandre)</h3>
+                                <span class="badge bg-amber-100 text-amber-800">À optimiser</span>
+                            </div>
+                            <div class="observation">
+                                <h4 class="font-medium text-green-700 mb-2">Constat</h4>
+                                <p class="text-gray-700">Alexandre évoque des objections récurrentes de prospects concernant le prix ou la garantie, mais il reconnaît ne pas toujours savoir quoi répondre. Il manque de scripts ou d'éléments de langage pour adresser ces objections, ce qui affaiblit la posture commerciale dans les relances ou les échanges directs.</p>
+                            </div>
+                            <div class="recommendation">
+                                <h4 class="font-medium text-indigo-700 mb-2">Recommandation</h4>
+                                <p class="text-gray-700">
+                                    Créer une base d'objections traitées avec 3 piliers :<br>
+                                    ① Une FAQ commerciale courte (prix, délai, garantie, support)<br>
+                                    ② Une série de réponses types à injecter dans les relances<br>
+                                    ③ Une session de training en binôme pour s'approprier les réponses à l'oral<br>
+                                    Ce kit donnerait plus de confiance à Alexandre (et à tout futur commercial), tout en harmonisant le discours face aux objections structurantes.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Item 7 -->
+                        <div class="audit-item continue-optimize">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-semibold">Formation commerciale (Alexandre)</h3>
+                                <span class="badge bg-amber-100 text-amber-800">À optimiser</span>
+                            </div>
+                            <div class="observation">
+                                <h4 class="font-medium text-green-700 mb-2">Constat</h4>
+                                <p class="text-gray-700">Alexandre partage ses doutes sur certaines formulations utilisées en campagne et sur la façon d'interagir avec des prospects exigeants. Il n'a reçu ni formation poussée sur le copywriting, ni accompagnement sur le phoning ou la gestion des objections. Son autonomie est contrainte par ce manque de cadre pédagogique.</p>
+                            </div>
+                            <div class="recommendation">
+                                <h4 class="font-medium text-indigo-700 mb-2">Recommandation</h4>
+                                <p class="text-gray-700">
+                                    Lancer un mini-parcours de montée en compétence sur 3 axes :<br>
+                                    ① Relecture guidée des messages avant diffusion (1x/semaine)<br>
+                                    ② Simulations de call ou de gestion d'objections (20 min/sem)<br>
+                                    ③ Partage de bonnes pratiques via un Notion ou Google Doc interne<br>
+                                    Ce socle pédagogique léger permettrait d'augmenter la confiance, de sécuriser les campagnes, et de préparer une éventuelle passation plus fluide en octobre.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section id="team" class="mb-12">
+            <div class="section-card bg-white">
+                <div class="card-header bg-amber-50">
+                    <h2 class="text-2xl font-bold text-amber-700"><i class="fas fa-users mr-2"></i>Team</h2>
+                </div>
+                <div class="card-body">
+                    <div class="mt-8 space-y-8">
+                        <!-- Item 1 -->
+                        <div class="audit-item continue-optimize">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-semibold">Bande passante Paul</h3>
+                                <span class="badge bg-amber-100 text-amber-800">À optimiser</span>
+                            </div>
+                            <div class="observation">
+                                <h4 class="font-medium text-green-700 mb-2">Constat</h4>
+                                <p class="text-gray-700">Paul gère actuellement une partie importante de la prospection, en plus de nombreuses responsabilités opérationnelles (gestion des stocks, commandes, relation client, contenu LinkedIn…). Il reconnaît manquer de temps pour structurer et piloter la démarche de prospection. Ce manque de bande passante empêche la mise en œuvre rigoureuse des actions commerciales et leur suivi dans la durée.</p>
+                            </div>
+                            <div class="recommendation">
+                                <h4 class="font-medium text-indigo-700 mb-2">Recommandation détaillée</h4>
+                                <p class="text-gray-700">
+                                    ① Ritualiser une plage horaire hebdomadaire dédiée uniquement à la prospection ou au pilotage commercial, sanctuarisée dans son agenda (ex : chaque mardi 9h–11h), sans aucune autre sollicitation.<br>
+                                    ② Déléguer certaines responsabilités opérationnelles secondaires (ex : préparation devis, suivi stock) à un profil support ou à un alternant (présent ou futur), pour dégager du temps à plus forte valeur stratégique.<br>
+                                    ③ Mettre en place un tableau de pilotage simple, mis à jour chaque semaine, reprenant :<br>
+                                    • Volume de leads intégrés<br>
+                                    • Taux de réponse<br>
+                                    • Nombre de rendez-vous<br>
+                                    • Opportunités ouvertes / conclues<br>
+                                    ④ Programmer un point hebdo de 30 min avec Alexandre (ou remplaçant) pour suivre la prospection en cours, débloquer les points bloquants et itérer ensemble.<br>
+                                    ⑤ À terme : recruter ou former un profil "Responsable de la Prospection" dédié, capable de piloter à la fois les outils, les cadences et le contenu, en lien direct avec Paul pour le cadrage stratégique.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Item 2 -->
+                        <div class="audit-item continue-optimize">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-semibold">Proactivité support</h3>
+                                <span class="badge bg-amber-100 text-amber-800">À optimiser</span>
+                            </div>
+                            <div class="observation">
+                                <h4 class="font-medium text-green-700 mb-2">Constat</h4>
+                                <p class="text-gray-700">Paul souligne la fiabilité d'Alexandre en tant que support opérationnel, mais déplore un manque de proactivité commerciale. Il identifie une tension entre les tâches de support (ex : relances client, traitement de demandes) et les missions de développement (prospection, relance, suivi), ce qui nuit à l'efficacité globale du poste. Le départ programmé d'Alexandre rend la situation d'autant plus critique.</p>
+                            </div>
+                            <div class="recommendation">
+                                <h4 class="font-medium text-indigo-700 mb-2">Recommandation</h4>
+                                <p class="text-gray-700">
+                                    Clarifier les périmètres de poste dans le futur recrutement :<br>
+                                    ① Scinder explicitement les fonctions support vs. développement commercial, même si tenues par un même profil ;<br>
+                                    ② Prioriser un profil en école de commerce avec appétence forte pour la prospection et les résultats, et non uniquement pour l'exécution ;<br>
+                                    ③ Intégrer dès l'onboarding une logique de pilotage sur objectifs hebdo (volumes, réponses, RDV) pour ancrer une posture active dès les premières semaines.<br>
+                                    Ce cadrage permettra d'éviter la dilution des rôles et de renforcer la contribution commerciale du poste.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Item 3 -->
+                        <div class="audit-item continue-pursue">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-semibold">Recrutement alternant</h3>
+                                <span class="badge bg-amber-100 text-amber-800">À poursuivre</span>
+                            </div>
+                            <div class="observation">
+                                <h4 class="font-medium text-green-700 mb-2">Constat</h4>
+                                <p class="text-gray-700">Paul a lancé des entretiens avec plusieurs candidats pour un futur alternant commercial. Il semble engagé dans une logique de renouvellement du poste, avec un filtre plus exigeant sur la posture et la motivation. Cette initiative est un levier clé pour solidifier l'exécution commerciale.</p>
+                            </div>
+                            <div class="recommendation">
+                                <h4 class="font-medium text-indigo-700 mb-2">Recommandation</h4>
+                                <p class="text-gray-700">
+                                    Accompagner ce recrutement avec :<br>
+                                    ① Une fiche de poste précise, centrée sur les livrables attendus (ex : volume de leads traités, relances, campagnes AMList)<br>
+                                    ② Un onboarding structuré avec objectifs à 15 / 30 / 60 jours<br>
+                                    ③ Un suivi hebdo rituel pour assurer montée en compétence et responsabilisation progressive<br>
+                                    En cadrant ce recrutement dès l'amont, Rewake gagnera du temps, de l'impact et réduira le risque de dilution du rôle comme sur le précédent cycle.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Item 4 -->
+                        <div class="audit-item continue-pursue">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-semibold">Posture de changement (Alban Catois)</h3>
+                                <span class="badge bg-green-100 text-green-800">À poursuivre</span>
+                            </div>
+                            <div class="observation">
+                                <h4 class="font-medium text-green-700 mb-2">Constat</h4>
+                                <p class="text-gray-700">Alban fait preuve d'une lucidité notable sur le chemin à parcourir. Il admet ouvertement que Rewake n'a pas assez structuré son approche commerciale jusqu'ici, et qu'il y a une "vraie opportunité de mieux faire". Cette posture d'humilité et d'ouverture au changement constitue un levier favorable à l'accompagnement.</p>
+                            </div>
+                            <div class="recommendation">
+                                <h4 class="font-medium text-indigo-700 mb-2">Recommandation</h4>
+                                <p class="text-gray-700">
+                                    Valoriser cette posture pour ancrer une dynamique positive en interne :<br>
+                                    ① Partager une vision claire des progrès attendus en prospection ;<br>
+                                    ② Impliquer Alban comme relais du changement stratégique auprès de l'équipe (même partiellement)<br>
+                                    ③ Formaliser les "quick wins" visibles à court terme pour entretenir l'élan<br>
+                                    Ce rôle de co-pilote lucide aidera à sécuriser les transformations à venir et à éviter les retours en arrière.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Item 5 -->
+                        <div class="audit-item continue-optimize">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-semibold">Priorisation tâches Alexandre</h3>
+                                <span class="badge bg-amber-100 text-amber-800">À optimiser</span>
+                            </div>
+                            <div class="observation">
+                                <h4 class="font-medium text-green-700 mb-2">Constat</h4>
+                                <p class="text-gray-700">Alexandre partage un quotidien commercial hybride, partagé entre tâches de reprise (analyse des équipements, devis de reprise) et prospection (campagnes d'emails, LinkedIn, réponses aux leads). Il ne dispose pas de cadre de priorisation clair, ni d'objectifs chiffrés par canal. Cette dispersion nuit à la continuité des actions commerciales et à la montée en compétence sur les canaux.</p>
+                            </div>
+                            <div class="recommendation">
+                                <h4 class="font-medium text-indigo-700 mb-2">Recommandation</h4>
+                                <p class="text-gray-700">
+                                    Structurer une feuille de route hebdomadaire alignée sur les objectifs de pipe :<br>
+                                    ① Scinder explicitement les blocs "reprise" et "développement" dans le calendrier<br>
+                                    ② Fixer des quotas d'activités par canal (ex : 30 leads email, 10 connexions LinkedIn)<br>
+                                    ③ Intégrer un rituel de priorisation (début de semaine) et de récap (fin de semaine)<br>
+                                    ④ Déléguer certaines tâches non commerciales (ex : collecte d'infos produits) si possible<br>
+                                    Ce cadrage permettra d'augmenter l'impact du poste, même en temps partiel.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Campaigns Section -->
+        <section id="campaigns" class="mb-12">
+            <div class="section-card bg-white">
+                <div class="card-header bg-red-50">
+                    <h2 class="text-2xl font-bold text-red-700"><i class="fas fa-chart-line mr-2"></i>Campagnes de Prospection</h2>
+                </div>
+                <div class="card-body">
+                    <h3 class="text-xl font-semibold mb-4">Analyse des campagnes Walaaxy</h3>
+                    <p class="mb-6">Base analysée : 4 479 prospects ciblés via LinkedIn sur plusieurs séquences.</p>
+
+                    <div class="mb-8">
+                        <h4 class="text-lg font-medium text-gray-800 mb-3">1. Analyse quantitative brute</h4>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full bg-white border border-gray-200">
+                                <thead>
+                                    <tr>
+                                        <th class="px-4 py-2 border-b border-gray-200 bg-gray-50 text-left text-sm font-medium text-gray-700">Indicateur</th>
+                                        <th class="px-4 py-2 border-b border-gray-200 bg-gray-50 text-center text-sm font-medium text-gray-700">Volume</th>
+                                        <th class="px-4 py-2 border-b border-gray-200 bg-gray-50 text-center text-sm font-medium text-gray-700">% vs. total</th>
+                                        <th class="px-4 py-2 border-b border-gray-200 bg-gray-50 text-left text-sm font-medium text-gray-700">Observations</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="px-4 py-2 border-b border-gray-200">Prospects totaux</td>
+                                        <td class="px-4 py-2 border-b border-gray-200 text-center">4 479</td>
+                                        <td class="px-4 py-2 border-b border-gray-200 text-center">100 %</td>
+                                        <td class="px-4 py-2 border-b border-gray-200">Base significative</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-2 border-b border-gray-200">Connexions acceptées</td>
+                                        <td class="px-4 py-2 border-b border-gray-200 text-center">816</td>
+                                        <td class="px-4 py-2 border-b border-gray-200 text-center">~18 %</td>
+                                        <td class="px-4 py-2 border-b border-gray-200">Taux d'acceptation moyen (standard = 20–30 %)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-2 border-b border-gray-200">En attente</td>
+                                        <td class="px-4 py-2 border-b border-gray-200 text-center">1 059</td>
+                                        <td class="px-4 py-2 border-b border-gray-200 text-center">~24 %</td>
+                                        <td class="px-4 py-2 border-b border-gray-200">Taux normal sur des séquences encore ouvertes</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-2 border-b border-gray-200">Non connectés</td>
+                                        <td class="px-4 py-2 border-b border-gray-200 text-center">2 604</td>
+                                        <td class="px-4 py-2 border-b border-gray-200 text-center">~58 %</td>
+                                        <td class="px-4 py-2 border-b border-gray-200">↳ Grosse marge de progression sur l'accroche / ciblage</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-2 border-b border-gray-200">A répondu</td>
+                                        <td class="px-4 py-2 border-b border-gray-200 text-center text-red-600">161</td>
+                                        <td class="px-4 py-2 border-b border-gray-200 text-center text-red-600">~3,6 %</td>
+                                        <td class="px-4 py-2 border-b border-gray-200">Taux de réponse faible (benchmark = 8–12 %)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-2 border-b border-gray-200">Intéressés</td>
+                                        <td class="px-4 py-2 border-b border-gray-200 text-center text-red-600">41</td>
+                                        <td class="px-4 py-2 border-b border-gray-200 text-center text-red-600">~0,9 %</td>
+                                        <td class="px-4 py-2 border-b border-gray-200">Taux de conversion extrêmement bas (<1 %)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-2 border-b border-gray-200">Numéros de téléphone dispo</td>
+                                        <td class="px-4 py-2 border-b border-gray-200 text-center">151</td>
+                                        <td class="px-4 py-2 border-b border-gray-200 text-center">~3,3 %</td>
+                                        <td class="px-4 py-2 border-b border-gray-200">Trop faible pour envisager une activation phoning</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-2 border-b border-gray-200">Genre identifiable</td>
+                                        <td class="px-4 py-2 border-b border-gray-200 text-center">-</td>
+                                        <td class="px-4 py-2 border-b border-gray-200 text-center">94 %</td>
+                                        <td class="px-4 py-2 border-b border-gray-200">Segmentation homme/femme possible si besoin</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="mb-8">
+                        <h4 class="text-lg font-medium text-gray-800 mb-3">2. Constats structurants</h4>
+                        
+                        <div class="space-y-4">
+                            <div class="bg-red-50 p-4 rounded-lg">
+                                <h5 class="font-medium text-red-800 mb-2">🔸 A. Faible taux de connexion</h5>
+                                <p class="text-gray-700">18 % de connexion sur LinkedIn : acceptable mais perfectible.</p>
+                                <p class="text-gray-700 italic">Hypothèse : accroche d'invitation trop froide ou peu personnalisée.</p>
+                            </div>
+                            
+                            <div class="bg-red-50 p-4 rounded-lg">
+                                <h5 class="font-medium text-red-800 mb-2">🔸 B. Taux de réponse très bas (3,6 %)</h5>
+                                <p class="text-gray-700">C'est très en-dessous des benchmarks SaaS (8–12 % si ciblage + messages bons).</p>
+                                <p class="text-gray-700 italic">Hypothèse : séquence trop courte, pas assez de follow-up, copy faible.</p>
+                            </div>
+                            
+                            <div class="bg-red-50 p-4 rounded-lg">
+                                <h5 class="font-medium text-red-800 mb-2">🔸 C. Taux de leads "intéressés" trop bas (<1 %)</h5>
+                                <p class="text-gray-700">41 sur 4 479 → on est à 1 RDV pour 109 contacts en moyenne.</p>
+                                <p class="text-gray-700 italic">Hypothèse : absence de call-to-action clair, pas de différenciation sectorielle, manque d'argument choc.</p>
+                            </div>
+                            
+                            <div class="bg-red-50 p-4 rounded-lg">
+                                <h5 class="font-medium text-red-800 mb-2">🔸 D. Pas d'exploitation des silences</h5>
+                                <p class="text-gray-700">4 300+ prospects traités… mais on ne sait pas ce que deviennent les 4 438 autres que les 41 intéressés.</p>
+                                <p class="text-gray-700">Aucune logique de nurturing, de relance ou de recyclage.</p>
+                            </div>
+                            
+                            <div class="bg-red-50 p-4 rounded-lg">
+                                <h5 class="font-medium text-red-800 mb-2">🔸 E. Pas de canal secondaire</h5>
+                                <p class="text-gray-700">Tout repose sur LinkedIn. Pas de relais email, pas de téléphone.</p>
+                                <p class="text-gray-700">Limite fortement les chances de toucher les décisionnaires.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-8">
+                        <h4 class="text-lg font-medium text-gray-800 mb-3">3. Recommandations stratégiques</h4>
+                        
+                        <div class="space-y-4">
+                            <div class="bg-indigo-50 p-4 rounded-lg">
+                                <h5 class="font-medium text-indigo-800 mb-2">✅ 1. Travailler le ciblage & segmentation</h5>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Reprendre la base par verticale (biotech, medtech, foodtech) ;</li>
+                                    <li>Adapter les accroches et messages par secteur ;</li>
+                                    <li>Ajouter des signaux d'intention ou de contexte (recrutement, levée, actu presse…).</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-indigo-50 p-4 rounded-lg">
+                                <h5 class="font-medium text-indigo-800 mb-2">✅ 2. Refondre les séquences</h5>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Allonger les séquences : min. 5 à 7 touchpoints (LinkedIn + Email idéalement) ;</li>
+                                    <li>Ajouter un vrai message de relance différencié (changement d'angle) ;</li>
+                                    <li>Prévoir un CTA explicite dès le 2e ou 3e message (ex : "Tu veux qu'on s'appelle ?").</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-indigo-50 p-4 rounded-lg">
+                                <h5 class="font-medium text-indigo-800 mb-2">✅ 3. Travailler les silences</h5>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Exporter les non-répondants pour les intégrer dans une logique de nurturing (nouvelle séquence dans 30 jours avec angle différent) ;</li>
+                                    <li>Activer les leads "en attente" dans un nouveau cycle.</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-indigo-50 p-4 rounded-lg">
+                                <h5 class="font-medium text-indigo-800 mb-2">✅ 4. Améliorer les réponses</h5>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Formaliser des scripts de réponse à objections courantes ;</li>
+                                    <li>Ajouter un call-to-action dans la relance à ceux qui ont répondu "pas le bon moment".</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-indigo-50 p-4 rounded-lg">
+                                <h5 class="font-medium text-indigo-800 mb-2">✅ 5. Décloisonner le canal</h5>
+                                <ul class="list-disc pl-6 space-y-1">
+                                    <li>Intégrer l'email et/ou le téléphone pour suivre ceux qui ne répondent pas sur LinkedIn ;</li>
+                                    <li>Identifier les numéros disponibles sur Dropcontact / Kaspr et faire une campagne phoning ciblée.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chart-container" style="height: 400px;">
+                        <canvas id="conversionChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sequence Section -->
+        <section id="sequence" class="mb-12">
+            <div class="section-card bg-white">
+                <div class="card-header bg-teal-50">
+                    <h2 class="text-2xl font-bold text-teal-700"><i class="fas fa-project-diagram mr-2"></i>Audit Séquence de Prospection</h2>
+                </div>
+                <div class="card-body">
+                    <h3 class="text-xl font-semibold mb-4">⚙️ Audit de la séquence Wallaxy – Rewake</h3>
+
+                    <div class="mb-8">
+                        <h4 class="text-lg font-medium text-gray-800 mb-3">1. Structure de séquence</h4>
+                        
+                        <div class="bg-green-50 p-4 rounded-lg mb-4">
+                            <h5 class="font-medium text-green-800 mb-2">✅ Ce qui est en place :</h5>
+                            <ul class="list-disc pl-6 space-y-1">
+                                <li>Une séquence automatisée sur LinkedIn structurée en 3 points de contact (1 message initial + 2 relances).</li>
+                                <li>Un espacement de 5 à 7 jours entre les relances, cohérent avec les usages LinkedIn.</li>
+                                <li>Une segmentation partielle des messages (ciblage biotech vs. fichier client Thermo Fisher).</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-amber-50 p-4 rounded-lg">
+                            <h5 class="font-medium text-amber-800 mb-2">🔍 Points à optimiser :</h5>
+                            <ul class="list-disc pl-6 space-y-2">
+                                <li><span class="font-medium">Durée et intensité de la séquence :</span> La séquence s'arrête après 3 messages, ce qui est faible au regard des benchmarks B2B. Aujourd'hui, il faut en moyenne 6 à 9 points de contact multicanaux pour déclencher un premier échange sur des cycles de vente complexes.</li>
+                                
+                                <li><span class="font-medium">Uniformité des angles :</span> L'ensemble des messages repose sur le même levier (remise produit / garantie), sans variation d'approche. Cela limite la surface de contact avec les différentes typologies de prospects.</li>
+                                
+                                <li><span class="font-medium">Absence de diversification des formats :</span> Aucun message n'intègre de contenu intermédiaire (ex : lien vers une fiche produit, un cas client, une simulation simple, etc.) permettant d'introduire une valeur d'usage ou de contextualiser l'offre.</li>
+                                
+                                <li><span class="font-medium">Pas de canal secondaire :</span> Le canal LinkedIn est utilisé de manière exclusive. Or, l'absence de rebond via e-mail ou autre format réduit l'efficacité globale, en particulier sur les profils peu actifs sur LinkedIn.</li>
+                                
+                                <li><span class="font-medium">Absence de logique de nurturing ou de rappel long terme :</span> Aucune disposition n'est prévue pour réengager les prospects restés silencieux après la séquence initiale (ex : via une campagne ultérieure ou une relance différée).</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mb-8">
+                        <h4 class="text-lg font-medium text-gray-800 mb-3">2. Contenu des messages</h4>
+                        
+                        <div class="mb-6 border border-gray-200 rounded-lg overflow-hidden">
+                            <div class="bg-gray-100 px-4 py-2 border-b border-gray-200">
+                                <h5 class="font-medium">2.1 Message initial générique (Biotech)</h5>
+                            </div>
+                            <div class="p-4">
+                                <div class="mb-4">
+                                    <h6 class="text-green-600 font-medium mb-2">Points forts :</h6>
+                                    <ul class="list-disc pl-6 space-y-1">
+                                        <li>Le message est lisible, direct, et formule une proposition claire.</li>
+                                        <li>Il valorise la variété de l'offre ainsi que la garantie (élément différenciant utile sur le marché du reconditionné).</li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h6 class="text-amber-600 font-medium mb-2">Axes d'amélioration :</h6>
+                                    <ul class="list-disc pl-6 space-y-1">
+                                        <li>Le message est centré sur la liste des équipements et leur prix, sans mise en contexte ni bénéfice client clair. Cela le rapproche d'un discours produit descendant.</li>
+                                        <li>Aucun lien n'est fait avec les problématiques actuelles du secteur (budgets gelés, réassort rapide, gestion d'un parc mixte…).</li>
+                                        <li>La question de fin ("Cela peut-il vous intéresser ?") manque de substance et ne facilite pas un vrai signal d'intérêt.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6 border border-gray-200 rounded-lg overflow-hidden">
+                            <div class="bg-gray-100 px-4 py-2 border-b border-gray-200">
+                                <h5 class="font-medium">2.2 Relance générique</h5>
+                            </div>
+                            <div class="p-4">
+                                <div class="mb-4">
+                                    <h6 class="text-green-600 font-medium mb-2">Points forts :</h6>
+                                    <ul class="list-disc pl-6 space-y-1">
+                                        <li>Le ton reste professionnel, courtois, sans pression.</li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h6 class="text-amber-600 font-medium mb-2">Axes d'amélioration :</h6>
+                                    <ul class="list-disc pl-6 space-y-1">
+                                        <li>Le message est purement utilitaire (relance de lecture), sans apporter d'élément nouveau.</li>
+                                        <li>Il manque une ouverture à d'autres modalités de contact (ex : appel rapide, envoi d'infos, etc.).</li>
+                                        <li>Il aurait été pertinent de varier l'angle ou d'ouvrir sur une hypothèse métier.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6 border border-gray-200 rounded-lg overflow-hidden">
+                            <div class="bg-gray-100 px-4 py-2 border-b border-gray-200">
+                                <h5 class="font-medium">2.3 Message ciblé Thermo Fisher</h5>
+                            </div>
+                            <div class="p-4">
+                                <div class="mb-4">
+                                    <h6 class="text-green-600 font-medium mb-2">Points forts :</h6>
+                                    <ul class="list-disc pl-6 space-y-1">
+                                        <li>La mention de l'accord officiel avec Thermo Fisher renforce la crédibilité.</li>
+                                        <li>L'évocation des conditions de reprise et de la remise maximale est concrète et pertinente.</li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h6 class="text-amber-600 font-medium mb-2">Axes d'amélioration :</h6>
+                                    <ul class="list-disc pl-6 space-y-1">
+                                        <li>Le message reste très linéaire. Il pourrait intégrer un point de comparaison avec le neuf ou les standards du marché pour renforcer l'intérêt économique.</li>
+                                        <li>Le CTA est poliment formulé, mais n'ouvre pas sur un échange progressif (ex : prise d'info, simulation, etc.).</li>
+                                        <li>Il n'y a pas de personnalisation en fonction du profil du prospect (ex : type de labo, usage habituel, statut public ou privé, etc.).</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-8">
+                        <h4 class="text-lg font-medium text-gray-800 mb-3">3. Recommandations globales</h4>
+                        
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full bg-white border border-gray-200">
+                                <thead>
+                                    <tr>
+                                        <th class="px-4 py-2 border-b border-gray-200 bg-gray-50 text-left text-sm font-medium text-gray-700">Domaine</th>
+                                        <th class="px-4 py-2 border-b border-gray-200 bg-gray-50 text-left text-sm font-medium text-gray-700">Recommandation</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="px-4 py-2 border-b border-gray-200 font-medium">Structure de séquence</td>
+                                        <td class="px-4 py-2 border-b border-gray-200">Étendre la séquence à 5–6 messages, avec alternance des angles (prix, cas client, urgence, stock limité, etc.).</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-2 border-b border-gray-200 font-medium">Format des messages</td>
+                                        <td class="px-4 py-2 border-b border-gray-200">Introduire des messages "valeur ajoutée" (ex : mini-cas client, estimation d'économies, lien vers fiche produit).</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-2 border-b border-gray-200 font-medium">Canal de contact</td>
+                                        <td class="px-4 py-2 border-b border-gray-200">Ajouter un canal secondaire (e-mail) en sortie de séquence LinkedIn pour maximiser les chances de réponse.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-2 border-b border-gray-200 font-medium">Angle des messages</td>
+                                        <td class="px-4 py-2 border-b border-gray-200">Varier les registres d'approche (gain budgétaire, sécurisation du parc, conformité réglementaire, agilité projet).</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-2 border-b border-gray-200 font-medium">Post-sequence</td>
+                                        <td class="px-4 py-2 border-b border-gray-200">Formaliser une stratégie de réactivation des leads non répondants ou en attente longue (ex : campagne trimestrielle de rappel).</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Actions Plan -->
+        <section id="action-plan" class="mb-12">
+            <div class="section-card bg-white">
+                <div class="card-header bg-indigo-600">
+                    <h2 class="text-2xl font-bold text-white"><i class="fas fa-rocket mr-2"></i>Plan d'Action Prioritaire</h2>
+                </div>
+                <div class="card-body">
+                    <p class="mb-6 text-gray-700">Voici les 5 actions prioritaires à mettre en œuvre dans les 30 prochains jours pour maximiser l'impact immédiat :</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4 p-4 bg-indigo-50 rounded-lg">
+                            <div class="bg-indigo-600 text-white rounded-full h-8 w-8 flex items-center justify-center flex-shrink-0 mt-1">1</div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-indigo-700 mb-1">Refonte des séquences de prospection</h4>
+                                <p class="text-gray-700">Allonger à 5-6 touchpoints, intégrer l'email comme canal secondaire et varier les angles d'accroche par segment (biotech, medtech, foodtech).</p>
+                                <div class="mt-2 flex items-center text-sm text-gray-500">
+                                    <span class="mr-2"><i class="fas fa-clock"></i></span>
+                                    <span>Échéance : J+7</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4 p-4 bg-indigo-50 rounded-lg">
+                            <div class="bg-indigo-600 text-white rounded-full h-8 w-8 flex items-center justify-center flex-shrink-0 mt-1">2</div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-indigo-700 mb-1">Mise en place du rituel hebdomadaire de pilotage commercial</h4>
+                                <p class="text-gray-700">Instaurer un point fixe avec Alexandre (30min) pour suivre les KPIs, valider les nouvelles campagnes et ajuster la stratégie.</p>
+                                <div class="mt-2 flex items-center text-sm text-gray-500">
+                                    <span class="mr-2"><i class="fas fa-clock"></i></span>
+                                    <span>Échéance : J+2</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4 p-4 bg-indigo-50 rounded-lg">
+                            <div class="bg-indigo-600 text-white rounded-full h-8 w-8 flex items-center justify-center flex-shrink-0 mt-1">3</div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-indigo-700 mb-1">Création du tableau de pilotage commercial</h4>
+                                <p class="text-gray-700">Développer un dashboard simple sur Google Sheets ou Notion pour suivre les indicateurs clés (leads, réponses, RDVs, opportunités) et mesurer la performance par segment.</p>
+                                <div class="mt-2 flex items-center text-sm text-gray-500">
+                                    <span class="mr-2"><i class="fas fa-clock"></i></span>
+                                    <span>Échéance : J+5</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4 p-4 bg-indigo-50 rounded-lg">
+                            <div class="bg-indigo-600 text-white rounded-full h-8 w-8 flex items-center justify-center flex-shrink-0 mt-1">4</div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-indigo-700 mb-1">Réactivation des leads dormants</h4>
+                                <p class="text-gray-700">Extraire et qualifier les leads "silencieux" des précédentes campagnes, puis lancer une séquence ciblée avec un nouvel angle de valeur.</p>
+                                <div class="mt-2 flex items-center text-sm text-gray-500">
+                                    <span class="mr-2"><i class="fas fa-clock"></i></span>
+                                    <span>Échéance : J+14</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4 p-4 bg-indigo-50 rounded-lg">
+                            <div class="bg-indigo-600 text-white rounded-full h-8 w-8 flex items-center justify-center flex-shrink-0 mt-1">5</div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-indigo-700 mb-1">Formalisation de la fiche de poste du futur alternant</h4>
+                                <p class="text-gray-700">Définir précisément le rôle, les responsabilités et les objectifs chiffrés du futur alternant commercial, incluant un plan de montée en compétence sur 90 jours.</p>
+                                <div class="mt-2 flex items-center text-sm text-gray-500">
+                                    <span class="mr-2"><i class="fas fa-clock"></i></span>
+                                    <span>Échéance : J+10</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-lg font-bold">Audit Stratégique ReeWake</p>
+                    <p class="text-sm text-gray-300">Préparé pour Paul Forger</p>
+                </div>
+                <div>
+                    <p class="text-sm text-gray-400">Celscraft Consulting &copy; 2023</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation tabs functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const navTabs = document.querySelectorAll('.nav-tab');
+            
+            navTabs.forEach(tab => {
+                tab.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all tabs
+                    navTabs.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Get the section ID
+                    const sectionId = this.getAttribute('href').substring(1);
+                    
+                    // Scroll to section
+                    document.getElementById(sectionId).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Strategy Distribution Chart
+            const ctxStrategy = document.getElementById('strategyChart').getContext('2d');
+            new Chart(ctxStrategy, {
+                type: 'doughnut',
+                data: {
+                    labels: ['À poursuivre', 'À optimiser'],
+                    datasets: [{
+                        data: [4, 7],
+                        backgroundColor: ['#10B981', '#F59E0B'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Distribution des points stratégiques',
+                            font: {
+                                size: 16
+                            }
+                        },
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+            
+            // Conversion Funnel Chart
+            const ctxConversion = document.getElementById('conversionChart').getContext('2d');
+            new Chart(ctxConversion, {
+                type: 'bar',
+                data: {
+                    labels: ['Prospects ciblés', 'Connexions acceptées', 'A répondu', 'Intéressés'],
+                    datasets: [{
+                        label: 'Volume',
+                        data: [4479, 816, 161, 41],
+                        backgroundColor: [
+                            'rgba(59, 130, 246, 0.7)',
+                            'rgba(59, 130, 246, 0.6)',
+                            'rgba(59, 130, 246, 0.5)',
+                            'rgba(59, 130, 246, 0.4)'
+                        ],
+                        borderColor: [
+                            'rgba(59, 130, 246, 1)',
+                            'rgba(59, 130, 246, 1)',
+                            'rgba(59, 130, 246, 1)',
+                            'rgba(59, 130, 246, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Nombre de prospects'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Étape du funnel'
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Funnel de conversion des campagnes LinkedIn',
+                            font: {
+                                size: 16
+                            }
+                        },
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
